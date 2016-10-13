@@ -20,8 +20,8 @@ pip install numpy
 pip install scikit-image
 # for python3
 conda install -c https://conda.binstar.org/menpo opencv3
-# for python2
-conda install opencv
+# for python2 (gets you opencv 3.1 requirement)
+conda install -c menpo opencv3
 ```
 
 # Dataset preparation
