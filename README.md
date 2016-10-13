@@ -25,7 +25,10 @@ conda install -c menpo opencv3
 ```
 
 # Dataset preparation
-
+MAC only: use [homebrew](http://brew.sh) to install wget to run scripts.  
+```
+brew install wget
+```
 ```
 bash datasets/download.sh
 python datasets/flic_dataset.py
