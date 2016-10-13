@@ -3,17 +3,17 @@
 NOTE: This is not official implementation. Original paper is [DeepPose: Human Pose Estimation via Deep Neural Networks](http://arxiv.org/abs/1312.4659).
 
 # Requirements
-
-- Python 3.5.1+
+- [CUDA](http://www.nvidia.com/object/cuda_home_new.html)
+- Python 3.5.1+ or Python 2.7.+
   - [Chainer 1.13.0+](https://github.com/pfnet/chainer)
   - numpy 1.9+
   - scikit-image 0.11.3+
   - OpenCV 3.1.0+
 
-I strongly recommend to use Anaconda environment. This repo may be able to be used in Python 2.7 environment, but I haven't tested.
 
-## Installation of dependencies
+I strongly recommend to use Anaconda environment. 
 
+## Installation of dependencies for Linux: 
 ```
 pip install chainer
 pip install numpy
@@ -24,11 +24,47 @@ conda install -c https://conda.binstar.org/menpo opencv3
 conda install -c menpo opencv3
 ```
 
+## Installation of dependencies for Max OS X (El Capitan) and Python 2.7: 
+For MAC: use [homebrew](http://brew.sh) to install CUDA, as well as working python libraries that have CuPy set up for MACs:   
+```
+brew install python
+brew install Caskroom/cask/cuda
+```
+You will have to Get the latest CUDA hardware driver to match the cuda toolkit package
+from here: http://www.nvidia.com/object/mac-driver-archive.html
+
+Add the following to ~/.bash_profile to link your CUDA library.:
+```
+PATH="/Developer/NVIDIA/CUDA-8.0/bin/:$PATH"
+export LD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-8.0/lib/
+export CUDA_ROOT=/Developer/NVIDIA/CUDA-8.0/
+export LDFLAGS="-F/Library/Frameworks/"
+```
+Next, use your homebrew-ed python to get the right dependency versions:  
+```
+
+pip install chainer
+pip install scikit-image
+pip install scipy
+pip install matplotlib
+
+# for python3
+brew install opencv3 --with-python3
+
+# for python2 (gets you opencv 3.1 requirement)
+brew install homebrew/science/opencv3 --with-contrib --with-cuda
+echo /usr/local/opt/opencv3/lib/python2.7/site-packages >> /usr/local/lib/python2.7/site-packages/opencv3.pth
+mkdir -p /Users/abolger/Library/Python/2.7/lib/python/site-packages
+echo 'import site; site.addsitedir("/usr/local/lib/python2.7/site-packages")' >> /Users/abolger/Library/Python/2.7/lib/python/site-packages/homebrew.pth
+```
+
+
 # Dataset preparation
 MAC only: use [homebrew](http://brew.sh) to install wget to run scripts.  
 ```
 brew install wget
 ```
+
 ```
 bash datasets/download.sh
 python datasets/flic_dataset.py
