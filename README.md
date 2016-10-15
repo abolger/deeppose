@@ -30,8 +30,6 @@ For MAC: use [homebrew](http://brew.sh) to install CUDA, as well as working pyth
 brew install python
 brew install Caskroom/cask/cuda
 ```
-You will have to Get the latest CUDA hardware driver to match the cuda toolkit package
-from here: http://www.nvidia.com/object/mac-driver-archive.html
 
 Add the following to ~/.bash_profile to link your CUDA library.:
 ```
@@ -40,6 +38,7 @@ export LD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-8.0/lib/
 export CUDA_ROOT=/Developer/NVIDIA/CUDA-8.0/
 export LDFLAGS="-F/Library/Frameworks/"
 ```
+Close and re-open Terminal for .bash_profile changes to take effect.
 Next, use your homebrew-ed python to get the right dependency versions:  
 ```
 
