@@ -33,10 +33,15 @@ brew install Caskroom/cask/cuda
 
 Add the following to ~/.bash_profile to link your CUDA library.:
 ```
-PATH="/Developer/NVIDIA/CUDA-8.0/bin/:$PATH"
+#NVIDIA GPU machine learning bindings
+export PATH="/Developer/NVIDIA/CUDA-8.0/bin/:$PATH"
 export LD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-8.0/lib/
 export CUDA_ROOT=/Developer/NVIDIA/CUDA-8.0/
 export LDFLAGS="-F/Library/Frameworks/"
+
+# Uses Homebrew version of python first:
+export PATH=/usr/local/bin:$PATH
+
 ```
 Close and re-open Terminal for .bash_profile changes to take effect.
 Next, use your homebrew-ed python to get the right dependency versions:  
@@ -50,11 +55,13 @@ pip install matplotlib
 # for python3
 brew install opencv3 --with-python3
 
-# for python2 (gets you opencv 3.1 requirement)
+# for python2 (gets you opencv 3.1 requirements)
+brew install jpeg libpng libtiff openexr
+brew install eigen tbb
 brew install homebrew/science/opencv3 --with-contrib --with-cuda
 echo /usr/local/opt/opencv3/lib/python2.7/site-packages >> /usr/local/lib/python2.7/site-packages/opencv3.pth
-mkdir -p /Users/abolger/Library/Python/2.7/lib/python/site-packages
-echo 'import site; site.addsitedir("/usr/local/lib/python2.7/site-packages")' >> /Users/abolger/Library/Python/2.7/lib/python/site-packages/homebrew.pth
+mkdir -p ~/Library/Python/2.7/lib/python/site-packages
+echo 'import site; site.addsitedir("/usr/local/lib/python2.7/site-packages")' >> ~/Library/Python/2.7/lib/python/site-packages/homebrew.pth
 ```
 
 
